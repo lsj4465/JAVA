@@ -17,25 +17,25 @@ public class resistance {
 		String b = sc.nextLine();
 		String c = sc.nextLine();
 		String[] colors = {"black","brown","red","orange","yellow","green","blue","violet","grey","white"};
-		int[] resist = new int[10];
-		int ra=0, rb=0, rc=0;
+		int[] resist = {0,1,2,3,4,5,6,7,8,9};
+		long ra=0, rb=0, rc=0;
 		
-		for( int i = 0; i<10 ;i++) {
-			resist[i] = i * (10^i);	
+		for(int i = 0; i<10; i++) {
+			
+		if (a.equals(colors[i])) {
+				ra = resist[i] * 10;
+			}
+			
+		if (b.equals(colors[i])) {
+		    	rb = resist[i];
+			}
+		
+		if (c.equals(colors[i])) {
+				rc = (int)Math.pow(10, i);
+			}
 		}
 		
-		
-		for(int j = 0; j<10; j++) {
-			if (a.equals(colors[j])) {
-				ra = resist[j];
-			}else if (b.equals(colors[j])) {
-		    		rb = resist[j];
-				}else if (c.equals(colors[j])) {
-						rc = resist[j];
-					}
-		}
-		
-		System.out.println(ra + rb + rc);
+		System.out.println((ra + rb) * rc);
 	}
 }
 

@@ -1,6 +1,7 @@
 class Parameters {
 
 	public static void main(String[] args) {
+		
 		int i = 0;
 		String str = "Hello";
 		Variables v = new Variables();

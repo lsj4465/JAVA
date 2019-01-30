@@ -8,9 +8,9 @@
  * 첫째 줄에 시험 본 과목의 개수 N이 주어진다. 이 값은 1000보다 작거나 같다. 둘째 줄에 세준이의 현재 성적이 주어진다. 이 값은 100보다 작거나 같은 음이 아닌 정수이고, 적어도 하나의 값은 0보다 크다.
  * 출력
  * 첫째 줄에 새로운 평균을 출력한다. 정답과의 절대/상대 오차는 10-2까지 허용한다.
- 
- 
  */
+ 
+ 
 
 import java.util.Scanner;
 
@@ -20,35 +20,38 @@ public class Average {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		
+		double sum = 0;
+		double max = 0;
+		double aver = 0;
 		int input = sc.nextInt();
+		double[] subject= new double[input];
 		
-		long[] subject= new long[input];
-		
+		//SCORE
 		for(int i = 0; i<input ; i++) {
-		
-			int score = sc.nextInt();
-			subject[i] = score;
+			subject[i] = sc.nextInt();	
 		}
 		
-		for(int j = 0; j<input ; j++) {
-			
-			if(subject[j]>subject[j+1]) {
-				long max = subject[j];
-			}
-			
+		//MAX
+		for(int j = 0; j<subject.length ; j++) {	
+			if(max<subject[j]) {
+				max = subject[j];
+			}	
 		}
 
-		for(int k = 0; k<input; k++) {
-			
-		subject[k] = subject[k]/max*100;
-			
+		//SUM
+		for(int k = 0; k<subject.length; k++) {
+		subject[k] = subject[k] / max * 100;
+		sum += subject[k];
 		}
 		
-		for(int l= 0; l<input; l++) {
-			sum =+ subject[l];
-		}
-		
-		System.out.println(sum/input);
+		//AVERAGE
+		aver = sum / input;
+		System.out.println(aver);
 		
 	}
 }
+
+
+
+

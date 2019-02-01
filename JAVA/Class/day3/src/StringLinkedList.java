@@ -1,77 +1,95 @@
+
 public class StringLinkedList {
-		private Node head;
-		private Node tail;
-		private int size = 0;
+	Node head;
+	Node tail;
 
-		private class Node{
+	int size;
 
-			public String data;
-			public Node next;
-			public Node(String input) {
-				this.data = input;
-				this.next = null;
-			}
-			
+	public StringLinkedList() {
+		this.head = null;
+		this.tail = null;
+		this.size = 0;
+	}
+
+	public class Node {
+		String value;
+		Node next;
+
+		public Node(String value) {
+			this.value = value;
 		}
-	
-	    void add(String input){ 
-		
-		Node temp = new Node(input);
-		if(size == 0){
-			
-			temp.next = head;
-			head = temp;
+	}
+
+
+	void add(String value) {
+		Node temp = new Node(value);
+		Node ptr = this.head;
+		if (size == 0) {
+			this.head = temp;
+			this.tail = temp.next;
 			size++;
-			if(head.next == null){
-				tail = head;
 		} else {
-			tail.next = temp;
-			tail = temp;
+			for (int i = 0; i < size-1; i++) {
+				ptr = ptr.next;
+			}
+			ptr.next = temp;
+			temp.next = this.tail;
 			size++;
 		}
+	}
+
+	void add(int index, String value) {
+		Node ptr = this.head;
+		Node temp = new Node(value);
+		if (index <= size) {
+			if(index == 1){
+				temp.next = head;
+				this.head = temp;
+			}
+			else{
+				for (int i = 0; i < index-1; i++) {
+					ptr = ptr.next;
+				}
+				temp.next = ptr.next;
+				ptr.next = temp;
+			}
+			size++;
 		}
 	}
-			
-			void add(int idx, String input){ 
-		
-			Node temp1 = head;
-			for(int i=0; i<idx-1; i++){
-				temp1 = temp1.next;
-			}
-			Node temp2 = temp1.next;
-			Node newNode = new Node(input);
-			temp1.next = newNode;
-			newNode.next = temp2;
-			size++;
-		
-			if(newNode.next == null){
-				tail = newNode;
-			}
-		
+
+	String get(int index) {
+		Node ptr = this.head;
+		if (index < size) {
+			for (int i = 0; i < index-1; i++)
+				ptr = ptr.next;
+			return ptr.value;
+		}
+		else return "error";
 	}
-	
 
-	   void remove(int k){
-
-		Node temp = head;
-
-        for(int i=0; i<k-1; i++){
-            temp = temp.next;
-        }
+	void remove(int index) {
+		Node ptr = this.head;
+		if (index<size){
+			for(int i = 0;i<index-2;i++){
+				ptr = ptr.next;
+			}
+			ptr.next = ptr.next.next;
+			size--;
+		}
 	}
-	
-	public int size(){
+
+
+	int size(){
 		return size;
 	}
-	
-	public String get(int k){
-		
-		Node temp = head;
 
-		for(int i=0; i<k; i++){
-			temp = temp.next;
+	void show(){
+		Node ptr = this.head;
+		for(int i = 0; i<size;i++){
+			System.out.print(ptr.value+" ");
+			if(ptr.next != null)
+				ptr = ptr.next;
 		}
-		return temp.data;
 	}
-	
+
 }

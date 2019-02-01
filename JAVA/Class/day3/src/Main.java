@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		StringArrayList list = new StringArrayList();
+		StringLinkedList list = new StringLinkedList();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str;
 		int index;
@@ -44,8 +44,7 @@ public class Main {
 				System.out.println("[리스트의 크기] : " + list.size());
 				break;
 			case 6:
-				for (int i = 0; i <list.capacity; i++)
-					System.out.print(list.arrList[i] +" ");
+				list.show();
 				break;
 			case 7:
 				System.out.println("[종료합니다.]");
